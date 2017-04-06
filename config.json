@@ -1,0 +1,7 @@
+{
+	"modelPackage": "com.mallorcasoftware.openweatherclient.model",
+	"apiPackage": "com.mallorcasoftware.openweatherclient.api",
+	"groupId": "com.mallorcasoftware",
+	"artifactId": "openweatherclient",
+	"hideGenerationTimestamp": true
+}

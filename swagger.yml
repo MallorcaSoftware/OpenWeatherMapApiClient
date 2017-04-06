@@ -1,0 +1,167 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "0.0.1"
+  title: OpenWeatherMap Client
+  
+securityDefinitions:
+  UserSecurity:
+    type: apiKey
+    in: query
+    name: APPID
+    
+security:
+  - UserSecurity: [] 
+  
+host: api.openweathermap.org
+basePath: /data/2.5
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+# Describe your paths here
+paths:
+  # This is a path endpoint. Change it.
+  /weather:
+    # This is a HTTP operation
+    get:
+      operationId: getCurrentWeatherData 
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Access current weather data for any location on Earth including over 200,000 cities! Current weather is frequently updated based on global models and data from more than 40,000 weather stations. Data is available in JSON, XML, or HTML format.
+      # This is array of GET operation parameters:
+      parameters:
+        # An example parameter that is in query and is required
+        -
+          name: q
+          in: query
+          description: By city name
+          required: false
+          type: string
+        - 
+          name: id
+          in: query
+          description: By city id
+          required: false
+          type: string
+        -
+          name: units
+          in: query
+          description: Standard, metric, and imperial units are available.
+          required: false
+          type: string
+        -
+          name: lang
+          in: query
+          description: You can use lang parameter to get the output in your language.
+          required: false
+          type: string
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            $ref: '#/definitions/CurrentWeatherDataResponse'
+              
+definitions:
+  CurrentWeatherDataResponseWeatherDto:
+    type: object
+    properties:
+      id:
+        type: integer
+      main:
+        type: string
+      description:
+        type: string
+      icon:
+        type: string
+  CurrentWeatherDataResponseMainDto:
+    type: object
+    properties:
+      temp:
+        type: number
+        format: double
+      pressure:
+        type: integer
+      humidity:
+        type: integer
+      temp_min:
+        type: number
+        format: double
+      temp_max:
+        type: number
+        format: double
+  CurrentWeatherDataResponseWindDto:
+    type: object
+    properties:
+      speed: 
+        type: number
+        format: double
+      deg:
+        type: integer
+        
+  CurrentWeatherDataResponseCloudsDto:
+    type: object
+    properties:
+      all:
+        type: integer
+        
+  CurrentWeatherDataResponseRainDto:
+    type: object
+    properties:
+      3h: 
+        type: integer
+        
+  CurrentWeatherDataResponseSnowDto:
+    type: object
+    properties:
+      3h:
+        type: integer
+  
+  CurrentWeatherDataResponseSysDto:
+    type: object
+    properties:
+      sunrise: 
+        type: string
+        format: timestamp
+      sunset: 
+        type: string
+        format: timestamp
+  CurrentWeatherDataResponse:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      visibility:
+        type: integer
+      weather:
+        type: array
+        items:
+          $ref: '#/definitions/CurrentWeatherDataResponseWeatherDto'
+      main:
+        $ref: '#/definitions/CurrentWeatherDataResponseMainDto'
+      wind:
+        $ref: '#/definitions/CurrentWeatherDataResponseWindDto'
+      clouds:
+        $ref: '#/definitions/CurrentWeatherDataResponseCloudsDto'
+      rain:
+        $ref: '#/definitions/CurrentWeatherDataResponseRainDto'
+      snow:
+        $ref: '#/definitions/CurrentWeatherDataResponseSnowDto'
+      sys:
+        $ref: '#/definitions/CurrentWeatherDataResponseSysDto'
+      dt: 
+        type: string
+        format: timestamp
