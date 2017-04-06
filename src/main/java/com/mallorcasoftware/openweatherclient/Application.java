@@ -2,6 +2,7 @@ package com.mallorcasoftware.openweatherclient;
 
 import com.mallorcasoftware.openweatherclient.api.DefaultApi;
 import com.mallorcasoftware.openweatherclient.model.CurrentWeatherDataResponse;
+import com.mallorcasoftware.openweatherclient.model.ForecastDataResponse;
 
 public class Application {
     public static void main(String[] args) {
@@ -11,8 +12,15 @@ public class Application {
         System.out.println("Wetter");
 
         try {
-            CurrentWeatherDataResponse currentWeather = defaultApi.getCurrentWeatherData("Cala Ratjada", null, "metric", "de_DE");
+            CurrentWeatherDataResponse currentWeather = defaultApi.getCurrentWeatherData("New York", null, "metric", "de_DE");
             System.out.println(currentWeather);
+        } catch (ApiException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ForecastDataResponse forecastDataResponse = defaultApi.getForecast("Cala Ratjada", null, "metric", "de_DE");
+            System.out.println(forecastDataResponse);
         } catch (ApiException e) {
             e.printStackTrace();
         }

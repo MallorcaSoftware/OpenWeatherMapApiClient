@@ -37,9 +37,9 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class CurrentWeatherDataResponseRainDto   {
   @SerializedName("3h")
-  private Integer _3h = null;
+  private Double _3h = null;
 
-  public CurrentWeatherDataResponseRainDto _3h(Integer _3h) {
+  public CurrentWeatherDataResponseRainDto _3h(Double _3h) {
     this._3h = _3h;
     return this;
   }
@@ -49,11 +49,11 @@ public class CurrentWeatherDataResponseRainDto   {
    * @return _3h
   **/
   @ApiModelProperty(example = "null", value = "")
-  public Integer get3h() {
+  public Double get3h() {
     return _3h;
   }
 
-  public void set3h(Integer _3h) {
+  public void set3h(Double _3h) {
     this._3h = _3h;
   }
 

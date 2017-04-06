@@ -40,7 +40,7 @@ public class CurrentWeatherDataResponseMainDto   {
   private Double temp = null;
 
   @SerializedName("pressure")
-  private Integer pressure = null;
+  private Double pressure = null;
 
   @SerializedName("humidity")
   private Integer humidity = null;
@@ -69,7 +69,7 @@ public class CurrentWeatherDataResponseMainDto   {
     this.temp = temp;
   }
 
-  public CurrentWeatherDataResponseMainDto pressure(Integer pressure) {
+  public CurrentWeatherDataResponseMainDto pressure(Double pressure) {
     this.pressure = pressure;
     return this;
   }
@@ -79,11 +79,11 @@ public class CurrentWeatherDataResponseMainDto   {
    * @return pressure
   **/
   @ApiModelProperty(example = "null", value = "")
-  public Integer getPressure() {
+  public Double getPressure() {
     return pressure;
   }
 
-  public void setPressure(Integer pressure) {
+  public void setPressure(Double pressure) {
     this.pressure = pressure;
   }
 

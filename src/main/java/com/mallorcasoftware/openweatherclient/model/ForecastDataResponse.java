@@ -27,55 +27,42 @@ package com.mallorcasoftware.openweatherclient.model;
 
 import java.util.Objects;
 import com.google.gson.annotations.SerializedName;
+import com.mallorcasoftware.openweatherclient.model.ForecastDataListItemDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
- * CurrentWeatherDataResponseWindDto
+ * ForecastDataResponse
  */
 
-public class CurrentWeatherDataResponseWindDto   {
-  @SerializedName("speed")
-  private Double speed = null;
+public class ForecastDataResponse   {
+  @SerializedName("list")
+  private List<ForecastDataListItemDto> list = new ArrayList<ForecastDataListItemDto>();
 
-  @SerializedName("deg")
-  private Double deg = null;
+  public ForecastDataResponse list(List<ForecastDataListItemDto> list) {
+    this.list = list;
+    return this;
+  }
 
-  public CurrentWeatherDataResponseWindDto speed(Double speed) {
-    this.speed = speed;
+  public ForecastDataResponse addListItem(ForecastDataListItemDto listItem) {
+    this.list.add(listItem);
     return this;
   }
 
    /**
-   * Get speed
-   * @return speed
+   * Get list
+   * @return list
   **/
   @ApiModelProperty(example = "null", value = "")
-  public Double getSpeed() {
-    return speed;
+  public List<ForecastDataListItemDto> getList() {
+    return list;
   }
 
-  public void setSpeed(Double speed) {
-    this.speed = speed;
-  }
-
-  public CurrentWeatherDataResponseWindDto deg(Double deg) {
-    this.deg = deg;
-    return this;
-  }
-
-   /**
-   * Get deg
-   * @return deg
-  **/
-  @ApiModelProperty(example = "null", value = "")
-  public Double getDeg() {
-    return deg;
-  }
-
-  public void setDeg(Double deg) {
-    this.deg = deg;
+  public void setList(List<ForecastDataListItemDto> list) {
+    this.list = list;
   }
 
 
@@ -87,23 +74,21 @@ public class CurrentWeatherDataResponseWindDto   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CurrentWeatherDataResponseWindDto currentWeatherDataResponseWindDto = (CurrentWeatherDataResponseWindDto) o;
-    return Objects.equals(this.speed, currentWeatherDataResponseWindDto.speed) &&
-        Objects.equals(this.deg, currentWeatherDataResponseWindDto.deg);
+    ForecastDataResponse forecastDataResponse = (ForecastDataResponse) o;
+    return Objects.equals(this.list, forecastDataResponse.list);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(speed, deg);
+    return Objects.hash(list);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CurrentWeatherDataResponseWindDto {\n");
+    sb.append("class ForecastDataResponse {\n");
     
-    sb.append("    speed: ").append(toIndentedString(speed)).append("\n");
-    sb.append("    deg: ").append(toIndentedString(deg)).append("\n");
+    sb.append("    list: ").append(toIndentedString(list)).append("\n");
     sb.append("}");
     return sb.toString();
   }
